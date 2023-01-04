@@ -27,13 +27,15 @@ void ispisi(DOKU d)
 int main(int argc, char const *argv[])
 {
 
-    int n;
+    int n, vel;
     printf("Unesite broj elemenata niza: ");
     scanf("%d", &n);
     DOKU *niz = formiraj(&n);
+    scanf("%d", &vel);
     for (int i = 0; i < n; i++)
     {
-        ispisi(niz[i]);
+        if (niz[i].size > vel)
+            ispisi(niz[i]);
     }
     free(niz);
     return 0;
