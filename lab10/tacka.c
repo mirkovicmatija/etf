@@ -19,9 +19,7 @@ double udaljenost(TACKA t1, TACKA t2)
 
 void citaj(TACKA *t)
 {
-    scanf("%d", &t->x);
-    scanf("%d", &t->y);
-    scanf("%c", &t->oznaka);
+    scanf("%d %d %c", &t->x, &t->y, &t->oznaka);
 }
 
 int provjera(TACKA *t)
