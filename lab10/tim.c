@@ -32,7 +32,7 @@ void sortiraj(TIM *t, int br)
     {
         for (int j = i; j < br; j++)
         {
-            if ((t[i]->bodovi < t[j].bodovi) || (t[i].bodovi == t[j].bodovi && t[i].pogodci - t[i].primljeni < t[j].pogodci - t[j].primljeni) || ((t[i].bodovi == t[j].bodovi && t[i].pogodci - t[i].primljeni == t[j].pogodci - t[j].primljeni) && t[i].pogodci < t[j].pogodci))
+            if (((t + i)->bodovi < t[j].bodovi) || (t[i].bodovi == t[j].bodovi && t[i].pogodci - t[i].primljeni < t[j].pogodci - t[j].primljeni) || ((t[i].bodovi == t[j].bodovi && t[i].pogodci - t[i].primljeni == t[j].pogodci - t[j].primljeni) && t[i].pogodci < t[j].pogodci))
             {
                 TIM p = t[i];
                 t[i] = t[j];
