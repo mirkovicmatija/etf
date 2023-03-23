@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-
+#include <stdlib.h>
 typedef struct
 {
-    int x, y;
+    double x, y;
     char oznaka;
 } TACKA;
 
@@ -19,7 +19,7 @@ double udaljenost(TACKA t1, TACKA t2)
 
 void citaj(TACKA *t)
 {
-    scanf("%d %d %c", &t->x, &t->y, &t->oznaka);
+    scanf("%lf %lf %c", &t->x, &t->y, &t->oznaka);
 }
 
 int provjera(TACKA *t)
@@ -47,6 +47,15 @@ double obim(TROUGAO t)
     return udaljenost(t.a, t.b) + udaljenost(t.a, t.c) + udaljenost(t.b, t.c);
 }
 
+TACKA *teziste(TROUGAO *t)
+{
+    TACKA *tac = (TACKA *)malloc(sizeof(TACKA));
+    tac->x = (t->a.x + t->b.x + t->c.x) / 3;
+    tac->y = (t->a.y + t->b.y + t->c.y) / 3;
+    tac->oznaka = 'T';
+    return tac;
+}
+
 int main(int argc, char const *argv[])
 {
     TACKA a[3];
@@ -61,6 +70,8 @@ int main(int argc, char const *argv[])
     else
     {
         TROUGAO tr = trougao(a);
+        TACKA *tacka = teziste(&tr);
+        printf("%lf", tacka->x);
         printf(" %lf ", obim(tr));
     }
     return 0;

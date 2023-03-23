@@ -42,6 +42,23 @@ void sortiraj(TIM *t, int br)
     }
 }
 
+void gr(TIM *t, int br)
+{
+    for (int i = 0; i < br; i++)
+    {
+        for (int j = i; j < br; j++)
+        {
+            if (t[i].pogodci - t[i].primljeni < t[j].pogodci - t[j].primljeni)
+            {
+                TIM p = t[i];
+                t[i] = t[j];
+                t[j] = p;
+            }
+        }
+    }
+    printf(" %-32s %2d %3d %2d %3d\n", t[0].naziv, t[0].pogodci, t[0].primljeni, t[0].pogodci - t[0].primljeni, t[0].bodovi);
+}
+
 void ispisi(TIM *tim, int br)
 {
     printf("               NAZIV               GPO GPR GR BOD\n");
