@@ -35,10 +35,11 @@ int filmNazivCmp(char *nazivKorijen, char *nazivFilm)
     return strcmp(nazivKorijen, nazivFilm);
 }
 
-void *addNode(FILM f)
+CVOR *addNode(FILM f)
 {
     CVOR *novi = malloc(sizeof(CVOR));
-    novi->left = novi->right = NULL;
+    novi->left = NULL;
+    novi->right = NULL;
     novi->data = f;
     return novi;
 }
@@ -53,11 +54,11 @@ CVOR *addToTree(CVOR *root, FILM f)
     int c = filmNazivCmp(root->data.naziv, f.naziv);
     if (c < 0)
     {
-        addToTree(root->left, f);
+        root->left = addToTree(root->left, f);
     }
     if (c > 0)
     {
-        addToTree(root->right, f);
+        root->right = addToTree(root->right, f);
     }
     else
     {
@@ -65,31 +66,31 @@ CVOR *addToTree(CVOR *root, FILM f)
         strcpy(root->data.zanr, f.zanr);
         strcpy(root->data.reziser, f.reziser);
         strcpy(root->data.glumci, f.glumci);
-        // s
+        return root;
     }
     return root;
 }
 
-CVOR *search(CVOR *root, char *key)
+FILM *search(CVOR *root, char *key)
 {
     if (root == NULL)
     {
         return NULL;
     }
     int c = filmNazivCmp(root->data.naziv, key);
-    if (!c)
+    if (c == 0)
     {
-        return root;
+        return &(root->data);
     }
     if (c < 0)
     {
-        search(root->left, key);
+        return search(root->left, key);
     }
     if (c > 0)
     {
-        search(root->right, key);
+        return search(root->right, key);
     }
-    return root;
+    return &(root->data);
 }
 
 CVOR *deleteMovie(CVOR *root, char *key)
@@ -163,10 +164,9 @@ void deleteTree(CVOR *root)
 
 int main(int argc, char const *argv[])
 {
-    CVOR *korijen = 0;
-    CVOR *pretraga;
+    CVOR *korijen = NULL;
 
-    FILM f;
+    FILM f, *pretraga;
 
     short opcija;
 
@@ -199,7 +199,7 @@ int main(int argc, char const *argv[])
             scanf("%s", f.glumci);
             printf("===> GODINA OBJAVE:  ");
             scanf("%d", &(f.godina));
-            addToTree(korijen, f);
+            korijen = addToTree(korijen, f);
             break;
 
         case 2:
