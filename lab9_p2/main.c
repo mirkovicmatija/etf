@@ -116,7 +116,7 @@ int main(int argc, char const *argv[])
     H = addRight(E, "H");
     I = addLeft(F, "I");
     J = addLeft(H, "J");
-
+    // s
     printf("--- PREORDER:  ");
     preorder(korijen);
     printf("\n");

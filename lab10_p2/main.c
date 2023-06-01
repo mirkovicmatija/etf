@@ -65,6 +65,7 @@ CVOR *addToTree(CVOR *root, FILM f)
         strcpy(root->data.zanr, f.zanr);
         strcpy(root->data.reziser, f.reziser);
         strcpy(root->data.glumci, f.glumci);
+        // s
     }
     return root;
 }
