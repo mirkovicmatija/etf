@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-//process
+#include <time.h>
+// process
 typedef struct proces
 {
     char naziv[10];
